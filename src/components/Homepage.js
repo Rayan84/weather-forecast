@@ -81,7 +81,7 @@ console.log(cities);
       <select className="select" name="" id="">
         {filteredCities.map((city) => {
           return(
-          <option>{city.name}</option>
+          <option>{city[1].name}</option>
           )
         })}
       </select>
