@@ -12,7 +12,10 @@ const Homepage = () => {
   const [countryCode, setCountryCode] = useState({
     countryCode: 'AD',
   });
-
+  
+  const fetchForecast = (arr) => {
+    console.log(arr);
+  }
 //  // const setCountry = (event) => {
 //     location.country = event.target.value;
 //   };
@@ -49,16 +52,16 @@ const Homepage = () => {
 console.log(cities);
   // console.log('Finished');
  //  console.log(filteredCities);
-  console.log(citiesIndexes);
-  console.log(citiesIndexes[0].cd);
+  // console.log(citiesIndexes);
+  // console.log(citiesIndexes[0].cd);
   for (let i = 0; i < citiesIndexes.length; i++) {
     if (Object.values(countryCode)[0] === citiesIndexes[i].cd) {
-      console.log('=======');
-      console.log(i);
-      console.log(Object.values(countryCode)[0]);
-      console.log(citiesIndexes[i].cd);
-      console.log(citiesIndexes[i].start);
-      console.log(citiesIndexes[i].end);
+      // console.log('=======');
+      // console.log(i);
+      // console.log(Object.values(countryCode)[0]);
+      // console.log(citiesIndexes[i].cd);
+      // console.log(citiesIndexes[i].start);
+      // console.log(citiesIndexes[i].end);
 
 
       
@@ -78,10 +81,10 @@ console.log(cities);
           )
         })}
       </select>
-      <select className="select" name="" id="">
+      <select className="select" name="" id="" onChange={ (e) => {fetchForecast(e.target.value)}}>
         {filteredCities.map((city) => {
           return(
-          <option>{city[1].name}</option>
+          <option key={[city[1].lat, city[1].lng]} value={[city[1].lat, city[1].lng]}>{city[1].name}</option>
           )
         })}
       </select>

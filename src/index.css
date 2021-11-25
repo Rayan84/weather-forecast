@@ -16,4 +16,5 @@ select {
   padding: 9px;
   border-radius: 4px;
   font-size: large;
+  outline: none;
 }
