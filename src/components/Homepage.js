@@ -3,9 +3,11 @@ import { useState } from 'react';
 import cities from 'cities.json';
 import { countries } from 'countries-list';
 import citiesIndexes from './citiesIndexes';
+import { useDispatch } from 'react-redux';
 
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   // const keys = Object.entries(cities);
   // console.log(keys);
   // console.log(cities);
@@ -13,8 +15,10 @@ const Homepage = () => {
     countryCode: 'AD',
   });
   
-  const fetchForecast = (arr) => {
+  const changeHandler = (arr) => {
     console.log(arr);
+    console.log(typeof(arr));
+    
   }
 //  // const setCountry = (event) => {
 //     location.country = event.target.value;
@@ -62,10 +66,12 @@ console.log(cities);
       // console.log(citiesIndexes[i].cd);
       // console.log(citiesIndexes[i].start);
       // console.log(citiesIndexes[i].end);
-
-
-      
-     filterCities(citiesIndexes[i].start, citiesIndexes[i].end);
+      if(citiesIndexes[i].end > 100){
+        filterCities(citiesIndexes[i].start, citiesIndexes[i].start + 100);
+      }else {
+        filterCities(citiesIndexes[i].start, citiesIndexes[i].end);
+      }    
+     
     }
   };
 
@@ -81,7 +87,8 @@ console.log(cities);
           )
         })}
       </select>
-      <select className="select" name="" id="" onChange={ (e) => {fetchForecast(e.target.value)}}>
+      <select className="select" name="" id="" onChange={ (e) => {changeHandler(e.target.value)}}>
+          <option selected>Choose City</option>
         {filteredCities.map((city) => {
           return(
           <option key={[city[1].lat, city[1].lng]} value={[city[1].lat, city[1].lng]}>{city[1].name}</option>

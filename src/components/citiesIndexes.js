@@ -344,6 +344,16 @@ const citiesIndexes = [
     start: 34458,
     end: 34464,
   },
+  {
+    cd: 'NL',
+    start: 79412,
+    end: 80000,
+  },
+  {
+    cd: 'NO',
+    start: 80816,
+    end: 81115,
+  },
   
   
 
