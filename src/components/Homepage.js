@@ -4,6 +4,7 @@ import cities from 'cities.json';
 import { countries } from 'countries-list';
 import citiesIndexes from './citiesIndexes';
 import { useDispatch } from 'react-redux';
+import { fetchForecast } from '../Redux/homepage/homepage';
 
 
 const Homepage = () => {
@@ -15,10 +16,10 @@ const Homepage = () => {
     countryCode: 'AD',
   });
   
-  const changeHandler = (arr) => {
-    console.log(arr);
-    console.log(typeof(arr));
-    
+  const changeHandler = (string) => {
+    let coordinates = string.split(',');
+    dispatch(fetchForecast(coordinates[0], coordinates[1]));
+    console.log(coordinates);
   }
 //  // const setCountry = (event) => {
 //     location.country = event.target.value;
