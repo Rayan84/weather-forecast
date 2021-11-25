@@ -1,8 +1,8 @@
 const FETCH_FORECAST_REQUEST = 'forecastStore/forecast/fetch_request';
 const FETCH_FORECAST_SUCCESS = 'forecastStore/forecast/fetch_success';
 const FETCH_FORECAST_FAILURE = 'forecastStore/forecast/fetch_failure';
-//const citiesURL = 'http://dataservice.accuweather.com/locations/v1/topcities/{group}';
-const FORECAST_URL = 'https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D';
+// const citiesURL = 'http://dataservice.accuweather.com/locations/v1/topcities/{group}';
+// const FORECAST_URL = 'https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D';
 
 
 const initialiState = {
