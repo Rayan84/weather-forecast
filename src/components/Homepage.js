@@ -70,7 +70,6 @@ const Homepage = () => {
     <div>
       { returnedData.error === '' ? (
         <div className="width-100-percent text-align-center">
-          <h1 className="text-align-center">Weather Forcast</h1>
           <p className="text-align-center">Select your area:</p>
           <select className="select" onChange={(e) => { setCountryCode({ contryCode: e.target.value }); }}>
             {Object.entries(countries).map((country) => (
@@ -90,9 +89,10 @@ const Homepage = () => {
             ))}
           </select>
           <Link className="link" to="/details">Go</Link>
-          { returnedData.loading ? (<h1>loading...</h1>) : sixCities.map((city) => (
-            <div key={city.name} className="table-section width-100-percent">
-              <div className="square">
+          <div className="table-section width-100-percent">
+
+            { returnedData.loading ? (<h1>loading...</h1>) : sixCities.map((city) => (
+              <div key={city.name} className="square">
                 <h4>{city.name}</h4>
                 <p>
                   {city.time}
@@ -100,9 +100,8 @@ const Homepage = () => {
                   {city.temperature}
                 </p>
               </div>
-            </div>
-
-          ))}
+            ))}
+          </div>
 
         </div>
       ) : (<h1>{returnedData.error}</h1>) }

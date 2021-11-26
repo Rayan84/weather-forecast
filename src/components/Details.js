@@ -13,7 +13,6 @@ const Details = () => {
 
   return (
     <div>
-      <h1 className="text-align-center">Weather Forcast</h1>
       <div className="display-flex">
         <Link className="link" to="/">← Back</Link>
         <h3>{city}</h3>
