@@ -1,7 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import { countries } from 'countries-list';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { city } from './Homepage';
 import { Link } from 'react-router-dom';
 

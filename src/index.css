@@ -1,4 +1,5 @@
 body {
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,9 +13,10 @@ code {
     monospace;
 }
 
-select {
-  padding: 9px;
-  border-radius: 4px;
-  font-size: large;
-  outline: none;
+html { 
+  background: url('./Blue-sky-with-clouds.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

@@ -22,12 +22,6 @@ const Homepage = () => {
     // console.log(coordinates);
   }
 
-  const exportCityName = (name) => {
-    console.log('export city name called...');
-    console.log(city);
-    city = name;
-  }
-
   const filteredCities = [];
   
   //const citiesEntries = Object.entries(cities);
@@ -72,7 +66,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <h1>Weather Forcast</h1>
+      <h1 className="text-align-center">Weather Forcast</h1>
       <p>Select your area:</p>
       <select className="select" onChange={ (e) => { setCountryCode({contryCode: e.target.value}) }}>
         {Object.entries(countries).map((country) => {
@@ -89,7 +83,7 @@ const Homepage = () => {
           )
         })}
       </select>
-      <Link to="/details">Go</Link>
+      <Link class="go" to="/details">Go</Link>
     </div>
   )
 }

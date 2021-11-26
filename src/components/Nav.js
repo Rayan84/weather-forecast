@@ -1,24 +1,12 @@
 import {
   BrowserRouter as Router,
   Routes,
-  NavLink,
   Route,
 } from 'react-router-dom';
 import Details from './Details';
 import Homepage from './Homepage';
 
 const Nav = () => {
-  function linkStyle(num) {
-    const links = document.querySelectorAll('.nav-link');
-    for (let i = 0; i < links.length; i += 1) {
-      if (i !== num) {
-        links[i].style.textDecoration = 'none';
-      } else {
-        links[i].style.textDecoration = 'underline';
-      }
-    }
-  }
-
   return (
     <Router>
       <div className="display-flex justify-content-space-between nav-container">
