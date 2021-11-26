@@ -18,10 +18,12 @@ const Homepage = () => {
 
   return (
     <div>
-      <Link to="/">←</Link>
-      <h1>Weather Forcast</h1>
-      <h1>{city}</h1>
-      
+
+      <h1 className="text-align-center">Weather Forcast</h1>
+      <div className="display-flex">
+        <Link className="link" to="/">← Back</Link>
+        <h3>{city}</h3>
+      </div>      
       <p>{forecast.data[0]}</p>
       <p>{forecast.data[1]}</p>
 
