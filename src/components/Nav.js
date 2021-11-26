@@ -6,11 +6,10 @@ import {
 import Details from './Details';
 import Homepage from './Homepage';
 
-const Nav = () => {
-  return (
-    <Router>
-      <div className="display-flex justify-content-space-between nav-container">
-        {/* <ul className="navbar">
+const Nav = () => (
+  <Router>
+    <div className="display-flex justify-content-space-between nav-container">
+      {/* <ul className="navbar">
           <li>
             <NavLink
               to="/details"
@@ -34,13 +33,12 @@ const Nav = () => {
             </NavLink>
           </li>
         </ul> */}
-      </div>
-      <Routes>
-        <Route path="/details" element={<Details />} />
-        <Route path="/" element={<Homepage />} />
-      </Routes>
-    </Router>
-  );
-};
+    </div>
+    <Routes>
+      <Route path="/details" element={<Details />} />
+      <Route path="/" element={<Homepage />} />
+    </Routes>
+  </Router>
+);
 
 export default Nav;

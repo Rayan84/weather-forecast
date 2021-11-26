@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
-import homepageReducer from './homepage/homepage';
+import homepageReducer, { loopFetchSixCities } from './homepage/homepage';
 import detailsReducer from './details/details';
 
 const reducer = combineReducers({
@@ -10,5 +10,5 @@ const reducer = combineReducers({
 });
 
 const store = createStore(reducer, applyMiddleware(logger, reduxThunk));
-
+store.dispatch(loopFetchSixCities());
 export default store;

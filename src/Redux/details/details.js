@@ -1,30 +1,46 @@
-import axios from "axios";
-const FETCH_FORECAST_REQUEST = 'forecastStore/forecast/fetch_request';
-const FETCH_FORECAST_SUCCESS = 'forecastStore/forecast/fetch_success';
-const FETCH_FORECAST_FAILURE = 'forecastStore/forecast/fetch_failure';
+import axios from 'axios';
+
+const FETCH_DETAILS_REQUEST = 'detailsStore/details/fetch_request';
+const FETCH_DETAILS_SUCCESS = 'detailsStore/details/fetch_success';
+const FETCH_DETAILS_FAILURE = 'detailsStore/details/fetch_failure';
 const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast?';
-
-
 const initialiState = {
   loading: false,
   error: '',
   data: [],
 };
 
+export const fetchForecastRequest = () => ({
+  type: FETCH_DETAILS_REQUEST,
+});
 
+export const fetchForecastSuccess = (payload) => ({
+  type: FETCH_DETAILS_SUCCESS,
+  payload,
+});
+
+export const fetchForecastFailure = () => ({
+  type: FETCH_DETAILS_FAILURE,
+});
 export const fetchCityForecast = (lat, lng) => (dispatch) => {
+  console.log('fetch single city forecast', lat, lng);
   dispatch(fetchForecastRequest());
   axios.get(`${FORECAST_URL}latitude=${lat}&longitude=${lng}&hourly=temperature_2m`, { headers: {} })
     .then((response) => {
-      const data = response.data;
+      console.log('then started....');
+      const { data } = response;
+      // const { hourly } = response.data.hourly;
+      console.log(response.data);
       const { hourly } = data;
+      /* eslint-disable-next-line */
       const { temperature_2m, time } = hourly;
-      console.log('temperature:',temperature_2m[0]);
-      console.log('time:',time[0]);
-      console.log(Object.entries(data)[4]);
+      console.log('time:', time[0]);
+      console.log('temperature:', temperature_2m);
+
+      // console.log(Object.entries(response.data)[4]);
       const arr = [];
       arr.push(time[0]);
-      arr.push(temperature_2m[0])
+      arr.push(temperature_2m[0]);
       dispatch(fetchForecastSuccess(arr));
     })
     .catch((error) => {
@@ -32,32 +48,18 @@ export const fetchCityForecast = (lat, lng) => (dispatch) => {
     });
 };
 
-
-export const fetchForecastRequest = () => ({
-  type: FETCH_FORECAST_REQUEST,
-});
-
-export const fetchForecastSuccess = (payload) => ({
-  type: FETCH_FORECAST_SUCCESS,
-  payload,
-})
-
-export const fetchForecastFailure = () => ({
-  type: FETCH_FORECAST_FAILURE,
-})
-
 const reducer = (state = initialiState, action) => {
   console.log('updating state');
-  switch(action.type) {
-    case FETCH_FORECAST_REQUEST:
+  switch (action.type) {
+    case FETCH_DETAILS_REQUEST:
       return {
         loading: true,
         error: '',
         data: [],
       };
 
-    case FETCH_FORECAST_SUCCESS:
-      console.log('Fetch success');
+    case FETCH_DETAILS_SUCCESS:
+      console.log('Fetch single city success');
       console.log(action.payload);
       return {
         loading: false,
@@ -65,15 +67,15 @@ const reducer = (state = initialiState, action) => {
         data: action.payload,
       };
 
-    case FETCH_FORECAST_FAILURE:
+    case FETCH_DETAILS_FAILURE:
       return {
         loading: false,
         error: action.payload,
         data: [],
-      }
+      };
     default:
-    return initialiState;
+      return state;
   }
-}
+};
 
 export default reducer;
