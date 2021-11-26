@@ -1,8 +1,8 @@
+import axios from "axios";
 const FETCH_FORECAST_REQUEST = 'forecastStore/forecast/fetch_request';
 const FETCH_FORECAST_SUCCESS = 'forecastStore/forecast/fetch_success';
 const FETCH_FORECAST_FAILURE = 'forecastStore/forecast/fetch_failure';
-// const citiesURL = 'http://dataservice.accuweather.com/locations/v1/topcities/{group}';
-// const FORECAST_URL = 'https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D';
+const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast?';
 
 
 const initialiState = {
@@ -10,6 +10,28 @@ const initialiState = {
   error: '',
   data: [],
 };
+
+
+export const fetchCityForecast = (lat, lng) => (dispatch) => {
+  dispatch(fetchForecastRequest());
+  axios.get(`${FORECAST_URL}latitude=${lat}&longitude=${lng}&hourly=temperature_2m`, { headers: {} })
+    .then((response) => {
+      const data = response.data;
+      const { hourly } = data;
+      const { temperature_2m, time } = hourly;
+      console.log('temperature:',temperature_2m[0]);
+      console.log('time:',time[0]);
+      console.log(Object.entries(data)[4]);
+      const arr = [];
+      arr.push(time[0]);
+      arr.push(temperature_2m[0])
+      dispatch(fetchForecastSuccess(arr));
+    })
+    .catch((error) => {
+      dispatch(fetchForecastFailure(error.message));
+    });
+};
+
 
 export const fetchForecastRequest = () => ({
   type: FETCH_FORECAST_REQUEST,
@@ -25,6 +47,7 @@ export const fetchForecastFailure = () => ({
 })
 
 const reducer = (state = initialiState, action) => {
+  console.log('updating state');
   switch(action.type) {
     case FETCH_FORECAST_REQUEST:
       return {
@@ -34,6 +57,8 @@ const reducer = (state = initialiState, action) => {
       };
 
     case FETCH_FORECAST_SUCCESS:
+      console.log('Fetch success');
+      console.log(action.payload);
       return {
         loading: false,
         error: '',

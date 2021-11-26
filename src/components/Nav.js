@@ -22,7 +22,7 @@ const Nav = () => {
   return (
     <Router>
       <div className="display-flex justify-content-space-between nav-container">
-        <ul className="navbar">
+        {/* <ul className="navbar">
           <li>
             <NavLink
               to="/details"
@@ -45,7 +45,7 @@ const Nav = () => {
               Homepage
             </NavLink>
           </li>
-        </ul>
+        </ul> */}
       </div>
       <Routes>
         <Route path="/details" element={<Details />} />

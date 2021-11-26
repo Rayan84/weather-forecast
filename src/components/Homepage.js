@@ -4,44 +4,37 @@ import cities from 'cities.json';
 import { countries } from 'countries-list';
 import citiesIndexes from './citiesIndexes';
 import { useDispatch } from 'react-redux';
-import { fetchForecast } from '../Redux/homepage/homepage';
+import { fetchCityForecast } from '../Redux/details/details';
+import { Link } from 'react-router-dom';
 
-
+export let city = 'city';
 const Homepage = () => {
   const dispatch = useDispatch();
-  // const keys = Object.entries(cities);
-  // console.log(keys);
-  // console.log(cities);
   const [countryCode, setCountryCode] = useState({
     countryCode: 'AD',
   });
   
-  const changeHandler = (string) => {
+  const changeHandler = (string, name) => {
     let coordinates = string.split(',');
-    dispatch(fetchForecast(coordinates[0], coordinates[1]));
-    console.log(coordinates);
+    dispatch(fetchCityForecast(coordinates[0], coordinates[1]));
+    console.log('=========');
+    city = coordinates[2];
+    // console.log(coordinates);
   }
-//  // const setCountry = (event) => {
-//     location.country = event.target.value;
-//   };
 
-  // const location = {
-  //   countryCode: '',
-  //   city: '',
-  // }
+  const exportCityName = (name) => {
+    console.log('export city name called...');
+    console.log(city);
+    city = name;
+  }
 
- /// console.log(Object.entries(cities)[0][1].country);
-
-  // for(let i = 0; i < cities.length; i++) {
-  //   if
-  // }
   const filteredCities = [];
   
   //const citiesEntries = Object.entries(cities);
-  console.log(Object.values(countryCode)[0]);
+  // console.log(Object.values(countryCode)[0]);
   // console.log(Object.values(countryCode));
   const filterCities = (a, b) => { 
-   console.log('filtering....');
+  //  console.log('filtering....');
     for (let i = a; i < b; i++) {
   //    console.log(citiesEntries);
     //   filteredCities++;
@@ -50,11 +43,11 @@ const Homepage = () => {
   
       
    }
-   console.log(filteredCities);
+  //  console.log(filteredCities);
 
   }
 
-console.log(cities);
+// console.log(cities);
   // console.log('Finished');
  //  console.log(filteredCities);
   // console.log(citiesIndexes);
@@ -89,15 +82,15 @@ console.log(cities);
         })}
       </select>
       <select className="select" name="" id="" onChange={ (e) => {changeHandler(e.target.value)}}>
-          <option selected>Choose City</option>
+          <option defaultValue="Choose City">Choose City</option>
         {filteredCities.map((city) => {
           return(
-          <option key={[city[1].lat, city[1].lng]} value={[city[1].lat, city[1].lng]}>{city[1].name}</option>
+          <option key={city[1].name} value={[city[1].lat, city[1].lng, city[1].name]}>{city[1].name}</option>
           )
         })}
       </select>
+      <Link to="/details">Go</Link>
     </div>
   )
 }
-
 export default Homepage;

@@ -17,16 +17,15 @@ export const fetchForecast = (lat, lng) => (dispatch) => {
   dispatch(fetchForecastRequest());
   axios.get(`${FORECAST_URL}latitude=${lat}&longitude=${lng}&hourly=temperature_2m`, { headers: {} })
     .then((response) => {
-      const data = Object.values(response.data);
-      console.log(data);
+      const data = response.data;
+      const { hourly } = data;
+      const { temperature_2m, time } = hourly;
+      console.log('temperature:',temperature_2m[0]);
+      console.log('time:',time[0]);
+      console.log(Object.entries(data)[4]);
       const arr = [];
-      for (let i = 0; i < data.length; i += 1) {
-        const obj = {};
-        obj.mission_id = data[i].mission_id;
-        obj.mission_name = data[i].mission_name;
-        obj.description = data[i].description;
-        arr.push(obj);
-      }
+      arr.push(time[0]);
+      arr.push(temperature_2m[0])
       dispatch(fetchForecastSuccess(arr));
     })
     .catch((error) => {
