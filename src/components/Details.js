@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { city } from './Homepage';
 
 const Details = () => {
   const forecast = useSelector((state) => state.details);
@@ -11,7 +10,7 @@ const Details = () => {
         <div>
           <div>
             <Link className="link" to="/">← Back</Link>
-            <h4>{city}</h4>
+            <h4>{forecast.data[2]}</h4>
           </div>
           <br />
           <br />

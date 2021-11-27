@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 import citiesIndexes from './citiesIndexes';
 import { fetchCityForecast } from '../Redux/details/details';
 
-/* eslint-disable-next-line */
-export let city = 'Please select a city first';
-
 const Homepage = () => {
   const dispatch = useDispatch();
   const returnedData = useSelector((state) => state.homepage);
@@ -17,12 +14,13 @@ const Homepage = () => {
   const [countryCode, setCountryCode] = useState({
     countryCode: 'AD',
   });
+
   const changeHandler = (string) => {
     const coordinates = string.split(',');
-    dispatch(fetchCityForecast(coordinates[0], coordinates[1]));
-    /* eslint-disable-next-line */
-    city = coordinates[2];
+    const [lat, lng, cityName] = coordinates;
+    dispatch(fetchCityForecast(lat, lng, cityName));
   };
+
   const filteredCities = [];
   const filterCities = (a, b) => {
     for (let i = a; i < b; i += 1) {

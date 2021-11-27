@@ -3,6 +3,8 @@ import axios from 'axios';
 const FETCH_FORECAST_REQUEST = 'homepageStore/homepage/fetch_request';
 const FETCH_FORECAST_SUCCESS = 'homepageStore/homepage/fetch_success';
 const FETCH_FORECAST_FAILURE = 'homepageStore/homepage/fetch_failure';
+const TEST = 'homepageStore/homepage/test';
+
 const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast?';
 const initialiState = {
   loading: false,
@@ -14,23 +16,10 @@ const initialiState = {
   }],
 };
 
-// const coordinates = {
-
-// }
-// async function getMultiple(...objectsToGet) {
-//   let users = [];
-//   await Promise.all(objectsToGet.map(obj =>
-//     axios.get(`${FORECAST_URL}latitude=${lat}&longitude=${lng}&hourly=temperature_2m`)
-// .then(response => {
-//       // do something with response
-//       users.push(response);
-//     })
-//   ));
-//   return users;
-// }
-
-// some other async context
-// console.log(await getMultiple({ id: 'asdf'}, { id: 'foo' }, { id: 'bar' }));
+export const test = (payload) => ({
+  type: TEST,
+  payload,
+});
 
 export const fetchForecastRequest = () => ({
   type: FETCH_FORECAST_REQUEST,
@@ -55,7 +44,6 @@ export const loopFetchSixCities = () => (dispatch) => {
   for (let i = 0; i < lat.length; i += 1) {
     axios.get(`${FORECAST_URL}latitude=${lat[i]}&longitude=${lng[i]}&hourly=temperature_2m`, { headers: {} })
       .then((response) => {
-      // arr.push(cities[i]);
         const { data } = response;
         const { hourly } = data;
         /* eslint-disable-next-line */
@@ -96,6 +84,13 @@ const reducer = (state = initialiState, action) => {
         loading: false,
         error: action.payload,
         data: [],
+      };
+    case TEST:
+      console.log('case test');
+      return {
+        loading: false,
+        error: '',
+        data: action.payload,
       };
     default:
       return state;
