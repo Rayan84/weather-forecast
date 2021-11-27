@@ -46,17 +46,15 @@ export const loopFetchSixCities = () => (dispatch) => {
       .then((response) => {
         const { data } = response;
         const { hourly } = data;
-        const { temperature_2m: temp, time } = hourly;
+        const { temperature_2m: temperatur, time } = hourly;
         const obj = {
           name: cities[i],
           time: time[0],
-          temperature: temp[0],
+          temperature: temperatur[0],
         };
 
         arr.push(obj);
-        if (arr) {
-          dispatch(fetchForecastSuccess(arr));
-        }
+        dispatch(fetchForecastSuccess(arr));
       }).catch((error) => {
         dispatch(fetchForecastFailure(error.message));
       });

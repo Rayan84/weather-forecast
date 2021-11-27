@@ -3,28 +3,30 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Details = () => {
-  const forecast = useSelector((state) => state.details);
+  const error = useSelector((state) => state.details.error);
+  const forecast = useSelector((state) => state.details.data);
   return (
     <div className="details-square">
-      { forecast.error === '' ? (
+      { error === '' ? (
         <div>
           <div>
             <Link className="link" to="/">← Back</Link>
-            <h4>{forecast.data[2]}</h4>
+            <h4>{forecast[2]}</h4>
           </div>
           <br />
           <br />
           <div>
-            <p>{forecast.data[0]}</p>
+            <p>{forecast[0]}</p>
             <p>
-              {forecast.data[1]}
+              {forecast[1]}
               °C
             </p>
           </div>
         </div>
       ) : (
         <h1>
-          { forecast.error}
+          {error}
+          Error
         </h1>
       )}
     </div>
