@@ -43,7 +43,7 @@ const Homepage = () => {
     <div className="homepage-container">
       { returnedData.error === '' ? (
         <div className="width-100-percent text-align-center">
-          <p className="text-align-center">Select your area:</p>
+          <p id="select-your-area" className="text-align-center">Select your area:</p>
           <select className="select" onChange={(e) => { setCountryCode({ contryCode: e.target.value }); }}>
             {Object.entries(countries).map((country) => (
               <option key={country[0]} value={country[0]}>
