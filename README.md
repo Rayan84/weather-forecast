@@ -9,7 +9,7 @@
 <img src='./src/laptop-screenshot.png'>
 <img src='./src/mobile-screenshot.png'>
 
-## Introduction video
+## Presentation video
 [video](https://youtu.be/nw5vNCaCKn8)
 
 ## Built With
