@@ -1,21 +1,39 @@
-.App {
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.width-100-percent {
+  width: 100%;
+}
+
+.text-align-center {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.temprature {
+  font-weight: bold;
+  color: yellow;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,11 +46,96 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.homepage-container,
+.details-square {
+  margin-top: 8rem;
+}
+
+select {
+  background: white;
+  margin: 5px;
+  border: none;
+  padding: 9px;
+  border-radius: 4px;
+  font-size: large;
+  outline: none;
+}
+
+.logo {
+  width: 10rem;
+  height: 6rem;
+  display: inline-block;
+  border-radius: 6px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  margin-left: 5px;
+  padding: 3px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.link:hover {
+  color: red;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.table-section {
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.details-square {
+  width: 80vw;
+  height: 70vh;
+  padding: 5rem;
+}
+
+.details-square,
+.square {
+  background: rgb(89, 84, 240, 0.5);
+  color: white;
+  font-size: 2rem;
+  border-radius: 10px;
+}
+
+.square {
+  margin: 1rem;
+  padding: 8px;
+  display: inline-block;
+  width: 40%;
+}
+
+@media screen and (max-width: 500px) {
+  .table-section {
+    display: block;
+    justify-content: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .square {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
   }
+}
+
+.top-section-container {
+  width: 20vh;
+}
+
+.position-fixed {
+  width: 100vw;
+  background-color: rgb(7, 7, 7, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
 }

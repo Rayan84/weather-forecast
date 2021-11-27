@@ -1,0 +1,34 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+const Details = () => {
+  const forecast = useSelector((state) => state.details);
+  return (
+    <div className="details-square">
+      { forecast.error === '' ? (
+        <div>
+          <div>
+            <Link className="link" to="/">← Back</Link>
+            <h4>{forecast.data[2]}</h4>
+          </div>
+          <br />
+          <br />
+          <div>
+            <p>{forecast.data[0]}</p>
+            <p>
+              {forecast.data[1]}
+              °C
+            </p>
+          </div>
+        </div>
+      ) : (
+        <h1>
+          { forecast.error}
+        </h1>
+      )}
+    </div>
+  );
+};
+
+export default Details;
