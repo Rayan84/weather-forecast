@@ -5,9 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './Redux/configureStore';
-// import { loopFetchSixCities } from './Redux/homepage/homepage';
 
-// store.dispatch(loopFetchSixCities());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

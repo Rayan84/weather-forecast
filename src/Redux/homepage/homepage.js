@@ -46,16 +46,17 @@ export const loopFetchSixCities = () => (dispatch) => {
       .then((response) => {
         const { data } = response;
         const { hourly } = data;
-        /* eslint-disable-next-line */
-        const { temperature_2m, time } = hourly;
+        const { temperature_2m: temp, time } = hourly;
         const obj = {
           name: cities[i],
           time: time[0],
-          temperature: temperature_2m[0],
+          temperature: temp[0],
         };
 
         arr.push(obj);
-        dispatch(fetchForecastSuccess(arr));
+        if (arr) {
+          dispatch(fetchForecastSuccess(arr));
+        }
       }).catch((error) => {
         dispatch(fetchForecastFailure(error.message));
       });
@@ -86,7 +87,6 @@ const reducer = (state = initialiState, action) => {
         data: [],
       };
     case TEST:
-      console.log('case test');
       return {
         loading: false,
         error: '',

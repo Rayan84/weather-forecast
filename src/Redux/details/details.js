@@ -29,11 +29,10 @@ export const fetchCityForecast = (lat, lng, cityName) => (dispatch) => {
     .then((response) => {
       const { data } = response;
       const { hourly } = data;
-      /* eslint-disable-next-line */
-      const { temperature_2m, time } = hourly;
+      const { temp: temperatur, time } = hourly;
       const arr = [];
       arr.push(time[0]);
-      arr.push(temperature_2m[0]);
+      arr.push(temperatur[0]);
       arr.push(cityName);
       dispatch(fetchForecastSuccess(arr));
     })

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import returnObject from '../test/mock';
 import { test } from '../Redux/homepage/homepage';
-// import store from '../Redux/configureStore';
 
 export default function TestComponent() {
   const cityDetails = useSelector((state) => state.homepage.data);
