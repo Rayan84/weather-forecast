@@ -3,7 +3,7 @@
  This web application fetches weather forecast data from https://open-meteo.com/en/docs API for cities displayed on the homepage, the user can also choose specific country and then the city to view cooresponding temperature data.
 
  ## Live link
- [Link]()
+ [Link](https://elastic-turing-eb476d.netlify.app/)
 
  ## Screenshot
 <img src='./src/laptop-screenshot.png'>
