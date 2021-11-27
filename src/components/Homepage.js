@@ -19,7 +19,6 @@ const Homepage = () => {
     const [lat, lng, cityName] = coordinates;
     dispatch(fetchCityForecast(lat, lng, cityName));
   };
-  console.log(cities);
   const filteredCities = [];
   const filterCities = (a, b) => {
     for (let i = a; i < b; i += 1) {
@@ -67,8 +66,10 @@ const Homepage = () => {
                 <p>
                   {city.time}
                   {' '}
-                  {city.temperature}
-                  °C
+                  <span className="temprature">
+                    {city.temperature}
+                    °C
+                  </span>
                 </p>
               </div>
             ))}

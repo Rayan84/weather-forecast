@@ -28,6 +28,11 @@ body {
   pointer-events: none;
 }
 
+.temprature {
+  font-weight: bold;
+  color: yellow;
+}
+
 .App-header {
   display: flex;
   flex-direction: column;
