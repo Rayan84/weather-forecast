@@ -1,103 +1,86 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import cities from 'cities.json';
 import { countries } from 'countries-list';
+import { Link } from 'react-router-dom';
 import citiesIndexes from './citiesIndexes';
-import { useDispatch } from 'react-redux';
-import { fetchForecast } from '../Redux/homepage/homepage';
+import { fetchCityForecast } from '../Redux/details/details';
 
+/* eslint-disable-next-line */
+export let city = 'Please select a city first';
 
 const Homepage = () => {
   const dispatch = useDispatch();
-  // const keys = Object.entries(cities);
-  // console.log(keys);
-  // console.log(cities);
+  const returnedData = useSelector((state) => state.homepage);
+  const sixCities = returnedData.data;
+
   const [countryCode, setCountryCode] = useState({
     countryCode: 'AD',
   });
-  
   const changeHandler = (string) => {
-    let coordinates = string.split(',');
-    dispatch(fetchForecast(coordinates[0], coordinates[1]));
-    console.log(coordinates);
-  }
-//  // const setCountry = (event) => {
-//     location.country = event.target.value;
-//   };
-
-  // const location = {
-  //   countryCode: '',
-  //   city: '',
-  // }
-
- /// console.log(Object.entries(cities)[0][1].country);
-
-  // for(let i = 0; i < cities.length; i++) {
-  //   if
-  // }
+    const coordinates = string.split(',');
+    dispatch(fetchCityForecast(coordinates[0], coordinates[1]));
+    /* eslint-disable-next-line */
+    city = coordinates[2];
+  };
   const filteredCities = [];
-  
-  //const citiesEntries = Object.entries(cities);
-  console.log(Object.values(countryCode)[0]);
-  // console.log(Object.values(countryCode));
-  const filterCities = (a, b) => { 
-   console.log('filtering....');
-    for (let i = a; i < b; i++) {
-  //    console.log(citiesEntries);
-    //   filteredCities++;
-     filteredCities.push(Object.entries(cities)[i])
-   //  console.log(filteredCities);
-  
-      
-   }
-   console.log(filteredCities);
-
-  }
-
-console.log(cities);
-  // console.log('Finished');
- //  console.log(filteredCities);
-  // console.log(citiesIndexes);
-  // console.log(citiesIndexes[0].cd);
-  for (let i = 0; i < citiesIndexes.length; i++) {
-    if (Object.values(countryCode)[0] === citiesIndexes[i].cd) {
-      // console.log('=======');
-      // console.log(i);
-      // console.log(Object.values(countryCode)[0]);
-      // console.log(citiesIndexes[i].cd);
-      // console.log(citiesIndexes[i].start);
-      // console.log(citiesIndexes[i].end);
-      if(citiesIndexes[i].end > 100){
-        filterCities(citiesIndexes[i].start, citiesIndexes[i].start + 100);
-      }else {
-        filterCities(citiesIndexes[i].start, citiesIndexes[i].end);
-      }    
-     
+  const filterCities = (a, b) => {
+    for (let i = a; i < b; i += 1) {
+      filteredCities.push(Object.entries(cities)[i]);
     }
   };
-
+  for (let i = 0; i < citiesIndexes.length; i += 1) {
+    if (Object.values(countryCode)[0] === citiesIndexes[i].cd) {
+      if (citiesIndexes[i].end > 100) {
+        filterCities(citiesIndexes[i].start, citiesIndexes[i].start + 100);
+      } else {
+        filterCities(citiesIndexes[i].start, citiesIndexes[i].end);
+      }
+    }
+  }
 
   return (
-    <div>
-      <h1>Weather Forcast</h1>
-      <p>Select your area:</p>
-      <select className="select" onChange={ (e) => { setCountryCode({contryCode: e.target.value}) }}>
-        {Object.entries(countries).map((country) => {
-          return (
-           <option key={country[0]} value={country[0]}>{country[1].emoji}{' '}{country[1].name}</option>
-          )
-        })}
-      </select>
-      <select className="select" name="" id="" onChange={ (e) => {changeHandler(e.target.value)}}>
-          <option selected>Choose City</option>
-        {filteredCities.map((city) => {
-          return(
-          <option key={[city[1].lat, city[1].lng]} value={[city[1].lat, city[1].lng]}>{city[1].name}</option>
-          )
-        })}
-      </select>
-    </div>
-  )
-}
+    <div className="homepage-container">
+      { returnedData.error === '' ? (
+        <div className="width-100-percent text-align-center">
+          <p className="text-align-center">Select your area:</p>
+          <select className="select" onChange={(e) => { setCountryCode({ contryCode: e.target.value }); }}>
+            {Object.entries(countries).map((country) => (
+              <option key={country[0]} value={country[0]}>
+                {country[1].emoji}
+                {' '}
+                {country[1].name}
+              </option>
+            ))}
+          </select>
+          <select className="select" name="" id="" onChange={(e) => { changeHandler(e.target.value); }}>
+            <option defaultValue="Choose City">Choose City</option>
+            {filteredCities.map((city) => (
+              <option key={city[1].name} value={[city[1].lat, city[1].lng, city[1].name]}>
+                {city[1].name}
+              </option>
+            ))}
+          </select>
+          <Link className="link" to="/details">Go</Link>
+          <div className="table-section width-100-percent">
 
+            { returnedData.loading ? (<h1>loading...</h1>) : sixCities.map((city) => (
+              <div key={city.name} className="square">
+                <h4>{city.name}</h4>
+                <p>
+                  {city.time}
+                  {' '}
+                  {city.temperature}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      ) : (<h1>{returnedData.error}</h1>) }
+
+    </div>
+
+  );
+};
 export default Homepage;

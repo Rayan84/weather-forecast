@@ -1,8 +1,8 @@
 const citiesIndexes = [
   {
-  cd: 'AD',
-  start: 0,
-  end: 9,
+    cd: 'AD',
+    start: 0,
+    end: 9,
   },
   {
     cd: 'AE',
@@ -354,15 +354,7 @@ const citiesIndexes = [
     start: 80816,
     end: 81115,
   },
-  
-  
 
-
-
-
-    
-  
-
-]
+];
 
 export default citiesIndexes;
