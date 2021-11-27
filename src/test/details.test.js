@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import Homepage from '../components/Homepage';
 import TestComponent from '../components/TestComponent';
 import { fetchForecastRequest, fetchForecastSuccess, fetchForecastFailure } from '../Redux/details/details';
 import store from '../Redux/configureStore';
@@ -15,14 +14,13 @@ describe('Test making requests', () => {
   it('Test fetch failure', () => {
     expect(fetchForecastFailure()).toEqual({ type: 'detailsStore/details/fetch_failure' });
   });
-  test('renders learn react link', () => {
+  test('renders text Test page', () => {
     render(
       <Provider store={store}>
         <TestComponent />
-        <Homepage />
       </Provider>,
     );
-    const linkElement = screen.getByText(/Select your area:/i);
+    const linkElement = screen.getByText(/Rome/i);
     expect(linkElement).toBeInTheDocument();
   });
 });

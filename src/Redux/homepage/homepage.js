@@ -3,7 +3,7 @@ import axios from 'axios';
 const FETCH_FORECAST_REQUEST = 'homepageStore/homepage/fetch_request';
 const FETCH_FORECAST_SUCCESS = 'homepageStore/homepage/fetch_success';
 const FETCH_FORECAST_FAILURE = 'homepageStore/homepage/fetch_failure';
-const TEST = 'details/test';
+const TEST = 'homepageStore/homepage/test';
 
 const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast?';
 const initialiState = {
@@ -86,6 +86,7 @@ const reducer = (state = initialiState, action) => {
         data: [],
       };
     case TEST:
+      console.log('case test');
       return {
         loading: false,
         error: '',
