@@ -5,12 +5,6 @@ import { city } from './Homepage';
 
 const Details = () => {
   const forecast = useSelector((state) => state.details);
-  console.log('====++++++++++++++===');
-  console.log(forecast);
-  console.log(forecast.data[0]);
-  console.log(forecast.data[1]);
-  console.log(city);
-
   return (
     <div className="details-square">
       { forecast.error === '' ? (

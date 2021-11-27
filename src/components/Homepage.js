@@ -5,44 +5,21 @@ import { countries } from 'countries-list';
 import { Link } from 'react-router-dom';
 import citiesIndexes from './citiesIndexes';
 import { fetchCityForecast } from '../Redux/details/details';
-// import { fetchSixCitiesForecast } from '../Redux/homepage/homepage';
 
 /* eslint-disable-next-line */
 export let city = 'Please select a city first';
-// const displayData = (arr = []) => {
-//   console.log('this is the data', arr);
-//    let tmp = [];
-//      arr.map((city) => {
-//      tmp.push (
-//       <div key={city.name} className="table-section width-100-percent">
-//       <div className="square">
-//         <h4>{city.name}</h4>
-//         <p>{city.time} {city.temperature}</p>
-//       </div>
-//       </div>
-//     )
-//   })
-//   return(tmp);
-
-// };
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const returnedData = useSelector((state) => state.homepage);
-  // const detailsData = useSelector((state) => state);
-  // console.log(returnedData.loading);
-  // console.log(returnedData);
-  // console.log(detailsData);
   const sixCities = returnedData.data;
 
   const [countryCode, setCountryCode] = useState({
     countryCode: 'AD',
   });
-  // console.log(sixCities);
   const changeHandler = (string) => {
     const coordinates = string.split(',');
     dispatch(fetchCityForecast(coordinates[0], coordinates[1]));
-    // console.log('=========');
     /* eslint-disable-next-line */
     city = coordinates[2];
   };

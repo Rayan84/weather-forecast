@@ -23,21 +23,13 @@ export const fetchForecastFailure = () => ({
   type: FETCH_DETAILS_FAILURE,
 });
 export const fetchCityForecast = (lat, lng) => (dispatch) => {
-  console.log('fetch single city forecast', lat, lng);
   dispatch(fetchForecastRequest());
   axios.get(`${FORECAST_URL}latitude=${lat}&longitude=${lng}&hourly=temperature_2m`, { headers: {} })
     .then((response) => {
-      console.log('then started....');
       const { data } = response;
-      // const { hourly } = response.data.hourly;
-      console.log(response.data);
       const { hourly } = data;
       /* eslint-disable-next-line */
       const { temperature_2m, time } = hourly;
-      console.log('time:', time[0]);
-      console.log('temperature:', temperature_2m);
-
-      // console.log(Object.entries(response.data)[4]);
       const arr = [];
       arr.push(time[0]);
       arr.push(temperature_2m[0]);
@@ -49,7 +41,6 @@ export const fetchCityForecast = (lat, lng) => (dispatch) => {
 };
 
 const reducer = (state = initialiState, action) => {
-  console.log('updating state');
   switch (action.type) {
     case FETCH_DETAILS_REQUEST:
       return {
@@ -59,8 +50,6 @@ const reducer = (state = initialiState, action) => {
       };
 
     case FETCH_DETAILS_SUCCESS:
-      console.log('Fetch single city success');
-      console.log(action.payload);
       return {
         loading: false,
         error: '',
