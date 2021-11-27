@@ -10,7 +10,6 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const returnedData = useSelector((state) => state.homepage);
   const sixCities = returnedData.data;
-
   const [countryCode, setCountryCode] = useState({
     countryCode: 'AD',
   });
@@ -20,7 +19,7 @@ const Homepage = () => {
     const [lat, lng, cityName] = coordinates;
     dispatch(fetchCityForecast(lat, lng, cityName));
   };
-
+  console.log(cities);
   const filteredCities = [];
   const filterCities = (a, b) => {
     for (let i = a; i < b; i += 1) {
@@ -69,6 +68,7 @@ const Homepage = () => {
                   {city.time}
                   {' '}
                   {city.temperature}
+                  °C
                 </p>
               </div>
             ))}

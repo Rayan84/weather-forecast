@@ -345,6 +345,71 @@ const citiesIndexes = [
     end: 34464,
   },
   {
+    cd: 'FK',
+    start: 34465,
+    end: 34465,
+  },
+  {
+    cd: 'FM',
+    start: 34466,
+    end: 34517,
+  },
+  {
+    cd: 'FO',
+    start: 34518,
+    end: 34532,
+  },
+  {
+    cd: 'FR',
+    start: 34533,
+    end: 43360,
+  },
+  {
+    cd: 'GB',
+    start: 43361,
+    end: 47680,
+  },
+  {
+    cd: 'GD',
+    start: 47681,
+    end: 47687,
+  },
+  {
+    cd: 'GE',
+    start: 47688,
+    end: 47794,
+  },
+  {
+    cd: 'GF',
+    start: 47795,
+    end: 47811,
+  },
+  {
+    cd: 'GG',
+    start: 477812,
+    end: 47819,
+  },
+  {
+    cd: 'GH',
+    start: 47820,
+    end: 47893,
+  },
+  {
+    cd: 'GI',
+    start: 47894,
+    end: 47894,
+  },
+  {
+    cd: 'GL',
+    start: 47895,
+    end: 47907,
+  },
+  {
+    cd: 'GM',
+    start: 47908,
+    end: 47978,
+  },
+  {
     cd: 'NL',
     start: 79412,
     end: 80000,
