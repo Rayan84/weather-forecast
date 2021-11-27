@@ -13,16 +13,27 @@ const Details = () => {
 
   return (
     <div className="details-square">
-      <div>
-        <Link className="link" to="/">← Back</Link>
-        <h4>{city}</h4>
-      </div>
-      <br />
-      <br />
-      <div>
-        <p>{forecast.data[0]}</p>
-        <p>{forecast.data[1]}</p>
-      </div>
+      { forecast.error === '' ? (
+        <div>
+          <div>
+            <Link className="link" to="/">← Back</Link>
+            <h4>{city}</h4>
+          </div>
+          <br />
+          <br />
+          <div>
+            <p>{forecast.data[0]}</p>
+            <p>
+              {forecast.data[1]}
+              °C
+            </p>
+          </div>
+        </div>
+      ) : (
+        <h1>
+          { forecast.error}
+        </h1>
+      )}
     </div>
   );
 };
