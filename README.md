@@ -24,7 +24,7 @@
 
 To get a local copy up and running follow these simple example steps.
 
-`git clone https://github.com/Rayan84/space-travelers-hub.git`
+`git clone https://github.com/Rayan84/weather-forecast.git`
 
 ### Installation
 
