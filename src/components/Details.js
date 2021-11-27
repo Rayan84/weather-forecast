@@ -12,14 +12,17 @@ const Details = () => {
   console.log(city);
 
   return (
-    <div>
-      <div className="display-flex">
+    <div className="details-square">
+      <div>
         <Link className="link" to="/">← Back</Link>
-        <h3>{city}</h3>
+        <h4>{city}</h4>
       </div>
-      <p>{forecast.data[0]}</p>
-      <p>{forecast.data[1]}</p>
-
+      <br />
+      <br />
+      <div>
+        <p>{forecast.data[0]}</p>
+        <p>{forecast.data[1]}</p>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cities from 'cities.json';
 import { countries } from 'countries-list';
@@ -62,12 +62,8 @@ const Homepage = () => {
     }
   }
 
-  useEffect(() => {
-    console.log('useEffect ran...');
-  }, [sixCities]);
-
   return (
-    <div>
+    <div className="homepage-container">
       { returnedData.error === '' ? (
         <div className="width-100-percent text-align-center">
           <p className="text-align-center">Select your area:</p>
