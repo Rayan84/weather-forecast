@@ -17,7 +17,7 @@ const Details = () => {
           <br />
           <div>
             <p>{forecast[0]}</p>
-            <p>
+            <p className="temprature">
               {forecast[1]}
               °C
             </p>
